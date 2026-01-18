@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Understand how inflation impacts your income and savings. Free inflation calculator with real-time analysis and visual charts to protect your financial future.">
+    <meta name="keywords"
+        content="inflation calculator, personal finance, purchasing power, savings calculator, financial education">
+    <title>Inflation Impact Calculator | Protect Your Purchasing Power</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top Banner Ad Placeholder -->
+    <div class="ad-slot ad-banner-top ad-hidden" id="ad-top">
+        <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- Support Button (Fixed Position) -->
+    <button class="support-btn" id="supportBtn" aria-label="Support this site">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+            </path>
+        </svg>
+        <span>Support this site</span>
+    </button>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>💰 Inflation Impact Calculator</h1>
+            <p class="tagline">Understand how inflation affects your income and savings over time</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="main-grid">
+            <!-- Calculator Section -->
+            <section class="calculator-section">
+                <div class="card">
+                    <h2>Calculate Your Financial Future</h2>
+                    <p class="section-description">Enter your financial details to see how inflation impacts your
+                        purchasing power</p>
+
+                    <form id="calculatorForm" class="calculator-form">
+                        <div class="form-group">
+                            <label for="monthlyIncome">
+                                <span class="label-text">Monthly Income</span>
+                                <span class="label-icon">💵</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="monthlyIncome" name="monthlyIncome" placeholder="5000" min="0"
+                                    step="100" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="currentSavings">
+                                <span class="label-text">Current Savings</span>
+                                <span class="label-icon">🏦</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="currentSavings" name="currentSavings" placeholder="20000"
+                                    min="0" step="100" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inflationRate">
+                                <span class="label-text">Annual Inflation Rate</span>
+                                <span class="label-icon">📈</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="number" id="inflationRate" name="inflationRate" placeholder="3.5" min="0"
+                                    max="100" step="0.1" required>
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="incomeGrowth">
+                                <span class="label-text">Annual Income Growth Rate</span>
+                                <span class="label-icon">📊</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="number" id="incomeGrowth" name="incomeGrowth" placeholder="2.5" min="0"
+                                    max="100" step="0.1" required>
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timePeriod">
+                                <span class="label-text">Time Period</span>
+                                <span class="label-icon">⏱️</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="number" id="timePeriod" name="timePeriod" placeholder="10" min="1" max="50"
+                                    step="1" required>
+                                <span class="input-suffix">years</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-calculate">Calculate Impact</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Side Ad Placeholder -->
+            <aside class="ad-slot ad-side-panel ad-hidden" id="ad-side">
+                <span class="ad-label">Advertisement</span>
+            </aside>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection">
+                <div class="card">
+                    <h2>Your Financial Outlook</h2>
+
+                    <!-- Insights Alert -->
+                    <div class="insights-alert" id="insightsAlert"></div>
+
+                    <!-- Key Metrics -->
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">💰</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Current Annual Income</span>
+                                <span class="metric-value" id="currentAnnualIncome">$0</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon">📅</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Future Nominal Income</span>
+                                <span class="metric-value" id="futureNominalIncome">$0</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon">💵</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Future Real Income</span>
+                                <span class="metric-value" id="futureRealIncome">$0</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon">📉</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Purchasing Power Change</span>
+                                <span class="metric-value" id="purchasingPowerChange">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon">🏦</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Current Savings</span>
+                                <span class="metric-value" id="currentSavingsDisplay">$0</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon">💸</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Real Savings Value</span>
+                                <span class="metric-value" id="realSavingsValue">$0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="charts-container">
+                        <div class="chart-wrapper">
+                            <h3>Income vs Inflation Over Time</h3>
+                            <canvas id="incomeChart" width="600" height="300"></canvas>
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <h3>Savings Real Value by Year</h3>
+                            <canvas id="savingsChart" width="600" height="300"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Table -->
+                    <div class="comparison-table-wrapper">
+                        <h3>Year-by-Year Breakdown</h3>
+                        <div class="table-scroll">
+                            <table class="comparison-table" id="comparisonTable">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Nominal Income</th>
+                                        <th>Real Income</th>
+                                        <th>Savings Value</th>
+                                        <th>Purchasing Power</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="comparisonTableBody">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Educational Content Section -->
+        <section class="education-section">
+            <div class="card">
+                <h2>Understanding Inflation & Your Money</h2>
+
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="education-icon">📚</div>
+                        <h3>What is Inflation?</h3>
+                        <p>Inflation is the rate at which the general level of prices for goods and services rises,
+                            eroding purchasing power. When inflation is 3%, something that costs $100 today will cost
+                            $103 next year.</p>
+                    </div>
+
+                    <div class="education-card">
+                        <div class="education-icon">⚠️</div>
+                        <h3>Why This Matters</h3>
+                        <p>If your income doesn't grow faster than inflation, you're effectively getting a pay cut each
+                            year. Your money buys less, even if the dollar amount stays the same or grows slightly.</p>
+                    </div>
+
+                    <div class="education-card">
+                        <div class="education-icon">🛡️</div>
+                        <h3>Protect Your Wealth</h3>
+                        <p>Combat inflation by investing in assets that historically outpace inflation: stocks, real
+                            estate, or inflation-protected securities. Negotiate raises that exceed inflation rates.</p>
+                    </div>
+
+                    <div class="education-card">
+                        <div class="education-icon">💡</div>
+                        <h3>Real vs Nominal</h3>
+                        <p><strong>Nominal</strong> values are the actual dollar amounts. <strong>Real</strong> values
+                            are adjusted for inflation, showing true purchasing power. Always think in real terms for
+                            financial planning.</p>
+                    </div>
+
+                    <div class="education-card">
+                        <div class="education-icon">🎯</div>
+                        <h3>Smart Savings Strategy</h3>
+                        <p>Don't let cash sit idle. High-yield savings accounts, CDs, and money market funds can help
+                            preserve value. For long-term goals, consider diversified investments that historically beat
+                            inflation.</p>
+                    </div>
+
+                    <div class="education-card">
+                        <div class="education-icon">📈</div>
+                        <h3>Income Growth Goals</h3>
+                        <p>Aim for annual raises that exceed inflation by 1-2%. If inflation is 3%, target 4-5% income
+                            growth to actually improve your standard of living year over year.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2026 Inflation Impact Calculator | Educational Tool for Financial Awareness</p>
+            <p class="disclaimer">This calculator provides estimates for educational purposes only. Consult a financial
+                advisor for personalized advice.</p>
+        </footer>
+    </div>
+
+    <!-- Bottom Sticky Ad Placeholder -->
+    <div class="ad-slot ad-banner-bottom ad-hidden" id="ad-bottom">
+        <span class="ad-label">Advertisement</span>
+        <button class="ad-close" id="closeBottomAd" aria-label="Close advertisement">×</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
